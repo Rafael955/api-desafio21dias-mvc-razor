@@ -1,12 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace web_renderizacao_server_side.Models
+namespace web_renderizacao_server_sidee.Models
 {
-    public class Administrador
+    public class Administrador : Entity<int>
     {
-        public int Id { get; set; }
-        
         [Required]
         public string Nome { get; set; }
         

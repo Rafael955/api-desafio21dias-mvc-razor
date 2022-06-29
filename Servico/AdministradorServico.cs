@@ -7,17 +7,12 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using web_renderizacao_server_side.Models;
+using web_renderizacao_server_sidee.Models;
 
-namespace web_renderizacao_server_side.Servico
+namespace web_renderizacao_server_sidee.Servico
 {
-    public class AdministradorServico
+    public static class AdministradorServico
     {
-        public AdministradorServico()
-        {
-            
-        }
-
         public static async Task<List<Administrador>> ObterTodos()
         {
             using var client = new HttpClient();
@@ -27,21 +22,22 @@ namespace web_renderizacao_server_side.Servico
             if(!response.IsSuccessStatusCode) return new List<Administrador>();
             
             string json = await response.Content.ReadAsStringAsync();
-            var paginacao = JsonConvert.DeserializeObject<Paginacao>(json);
+            var paginacao = JsonConvert.DeserializeObject<Paginacao<Administrador>>(json);
 
+            
             return paginacao.Results;
         }
 
-        public static async Task<Paginacao> ObterTodosPaginado(int pagina = 1)
+        public static async Task<Paginacao<Administrador>> ObterTodosPaginado(int pagina = 1)
         {
             using var client = new HttpClient();
             
             using var response = await client.GetAsync($"{Program.AdministradoresApi}/administradores/api/listar-administradores?page={pagina}");
 
-            if(!response.IsSuccessStatusCode) return new Paginacao();
+            if(!response.IsSuccessStatusCode) return new Paginacao<Administrador>();
             
             string json = await response.Content.ReadAsStringAsync();
-            var paginacao = JsonConvert.DeserializeObject<Paginacao>(json);
+            var paginacao = JsonConvert.DeserializeObject<Paginacao<Administrador>>(json);
 
             return paginacao;
         }

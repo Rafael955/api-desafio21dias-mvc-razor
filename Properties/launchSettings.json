@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "web_renderizacao_server_side": {
+    "web_renderizacao_server_sidee": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

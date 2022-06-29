@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace web_renderizacao_server_side
+namespace web_renderizacao_server_sidee
 {
     public class Startup
     {
@@ -24,6 +24,9 @@ namespace web_renderizacao_server_side
         public void ConfigureServices(IServiceCollection services)
         {
             Program.AdministradoresApi = Configuration.GetConnectionString("AdministradoresApi");
+            Program.AlunosProfessoresApi = Configuration.GetConnectionString("AlunosProfessoresApi");
+            Program.PaisApi = Configuration.GetConnectionString("PaisApi");
+            
             services.AddControllersWithViews();
         }
 

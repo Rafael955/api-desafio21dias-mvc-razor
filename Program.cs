@@ -7,11 +7,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace web_renderizacao_server_side
+namespace web_renderizacao_server_sidee
 {
     public class Program
     {
         public static string AdministradoresApi;
+        public static string AlunosProfessoresApi;
+        public static string PaisApi;
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();

@@ -1,10 +1,12 @@
-@model web_renderizacao_server_sidee.Models.Administrador
+@model web_renderizacao_server_sidee.Models.Aluno
 
 @{
-    ViewData["Title"] = "Cadastro de administrador";
+    ViewData["Title"] = "Cadastro de aluno";
 }
 
-<h4>Cadastro de novo administrador</h4>
+<h1>Create</h1>
+
+<h4>Cadastro de novo aluno</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,17 +18,17 @@
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="Matricula" class="control-label"></label>
+                <input asp-for="Matricula" class="form-control" />
+                <span asp-validation-for="Matricula" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Senha" class="control-label"></label>
-                <input asp-for="Senha" class="form-control" />
-                <span asp-validation-for="Senha" class="text-danger"></span>
+                <label asp-for="Notas" class="control-label"></label>
+                <input asp-for="Notas" class="form-control" />
+                <span asp-validation-for="Notas" class="text-danger"></span>
             </div>
             <div class="form-group mt-3">
-                <button type="" value="Create" class="btn btn-primary"><i class="bi bi-check-circle"></i> Salvar</button>
+                <button type="submit" value="Create" class="btn btn-primary"><i class="bi bi-check-circle"></i> Salvar</button>
             </div>
         </form>
     </div>

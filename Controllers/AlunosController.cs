@@ -5,112 +5,112 @@ using web_renderizacao_server_sidee.Servico;
 
 namespace web_renderizacao_server_sidee.Controllers
 {
-    public class AdministradoresController : Controller
+    public class AlunosController : Controller
     {
-        // GET: Administradores?pagina=1
-        public async Task<IActionResult> Index([FromQuery] int pagina = 1)
+        // GET: Alunos
+        public async Task<IActionResult> Index([FromQuery]int pagina = 1)
         {
-            return View(await AdministradorServico.ObterTodosPaginado(pagina));
+            return View(await AlunoServico.ObterTodosPaginado(pagina));
         }
 
-        // GET: Administradores/Details/5
+        // GET: Alunos/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var administrador = await AdministradorServico.BuscaPorId(id);
+            var aluno = await AlunoServico.BuscaPorId(id);
 
-            if (administrador == null)
+            if (aluno == null)
             {
                 return NotFound();
             }
 
-            return View(administrador);
+            return View(aluno);
         }
 
-        // GET: Administradores/Create
+        // GET: Alunos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Administradores/Create
+        // POST: Alunos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Email,Senha")] Administrador administrador)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Matricula,Notas")] Aluno aluno)
         {
             if (ModelState.IsValid)
             {
-                var _administrador = await AdministradorServico.Salvar(administrador);
+                var _administrador = await AlunoServico.Salvar(aluno);
                 return RedirectToAction(nameof(Details), new { id = _administrador.Id });
             }
-            return View(administrador);
+            return View(aluno);
         }
 
-        // GET: Administradores/Edit/5
+        // GET: Alunos/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            var administrador = await AdministradorServico.BuscaPorId(id);
+            var aluno = await AlunoServico.BuscaPorId(id);
 
-            if (administrador == null)
+            if (aluno == null)
             {
                 return NotFound();
             }
 
-            return View(administrador);
+            return View(aluno);
         }
 
-        // POST: Administradores/Edit/5
+        // POST: Alunos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Email,Senha")] Administrador administrador)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Matricula,Notas")] Aluno aluno)
         {
-            if (id != administrador.Id)
+            if (id != aluno.Id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                await AdministradorServico.Salvar(administrador);
+                await AlunoServico.Salvar(aluno);
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(administrador);
+            return View(aluno);
         }
 
-        // GET: Administradores/Delete/5
+        // GET: Alunos/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
-            var administrador =  await AdministradorServico.BuscaPorId(id);
+            var aluno =  await AlunoServico.BuscaPorId(id);
 
-            if (administrador == null)
+            if (aluno == null)
             {
                 return NotFound();
             }
 
-            return View(administrador);
+            return View(aluno);
         }
 
-        // POST: Administradores/Delete/5
+        // POST: Alunos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var exists = await AdministradorExists(id);
+            var exists = await AlunoExists(id);
             
             if(!exists) return NotFound();
 
-            await AdministradorServico.ExcluirPorId(id);
+            await AlunoServico.ExcluirPorId(id);
             
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task<bool> AdministradorExists(int id)
+        private async Task<bool> AlunoExists(int id)
         {
-            return await AdministradorServico.BuscaPorId(id) != null ? true : false;
+            return await AlunoServico.BuscaPorId(id) != null ? true : false;
         }
     }
 }

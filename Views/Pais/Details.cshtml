@@ -1,0 +1,29 @@
+@model web_renderizacao_server_sidee.Models.Pai
+
+@{
+    ViewData["Title"] = "Detalhes do pai";
+}
+
+<h1>Detalhes do pai</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Aluno)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Aluno.Nome)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Editar</a> |
+   <a class="btn btn-outline-dark" asp-action="Index"><i class="bi bi-arrow-counterclockwise"></i> Retornar para a Lista</a>
+</div>

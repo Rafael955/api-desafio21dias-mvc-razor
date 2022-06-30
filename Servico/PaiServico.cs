@@ -22,5 +22,20 @@ namespace web_renderizacao_server_sidee.Servico
 
             return listaDePais;
         }
+
+        public static async Task<Pai> BuscaPorId(string id)
+        {
+            using var client = new HttpClient();
+
+            using var result = await client.GetAsync($"{Program.PaisApi}/pais/api/detalhes-do-pai/{id}");
+
+            if(!result.IsSuccessStatusCode) return null;
+
+            var json = await result.Content.ReadAsStringAsync();
+
+            var pai = JsonConvert.DeserializeObject<Pai>(json);
+
+            return pai;
+        }
     }
 }

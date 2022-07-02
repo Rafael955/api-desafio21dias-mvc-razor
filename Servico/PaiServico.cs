@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using web_renderizacao_server_sidee.Models;
@@ -36,6 +38,44 @@ namespace web_renderizacao_server_sidee.Servico
             var pai = JsonConvert.DeserializeObject<Pai>(json);
 
             return pai;
+        }
+
+        public static async Task<Pai> Salvar(Pai paiDoAluno)
+        {
+            using var client = new HttpClient();
+
+            if(paiDoAluno.Id == string.Empty)
+            {
+                var json = JsonConvert.SerializeObject(paiDoAluno);
+                var buffer = Encoding.UTF8.GetBytes(json);
+                var content = new ByteArrayContent(buffer);
+
+                using var response = await client.PostAsync($"{Program.PaisApi}/pais/api/cadastrar-pai", content);
+
+                if(!response.IsSuccessStatusCode)
+                    throw new Exception("Erro ao incluir novo pai de aluno!");
+                
+                json = await response.Content.ReadAsStringAsync();
+                var _paiDoAluno = JsonConvert.DeserializeObject<Pai>(json);
+
+                return _paiDoAluno;
+            }
+            else
+            {
+                var json = JsonConvert.SerializeObject(paiDoAluno);
+                var buffer = Encoding.UTF8.GetBytes(json);
+                var content = new ByteArrayContent(buffer);
+
+                using var response = await client.PutAsync($"{Program.PaisApi}/pais/api/atualizar-dados-pai/{paiDoAluno.Id}", content);
+
+                if(!response.IsSuccessStatusCode)
+                    throw new Exception("Erro ao alterar dados do pai do aluno!");
+                
+                json = await response.Content.ReadAsStringAsync();
+                var _paiDoAluno = JsonConvert.DeserializeObject<Pai>(json);
+
+                return _paiDoAluno;
+            }
         }
     }
 }

@@ -1,10 +1,10 @@
-@model web_renderizacao_server_sidee.Models.Aluno
+@model web_renderizacao_server_sidee.Models.Pai
 
 @{
-    ViewData["Title"] = "Cadastro de aluno";
+    ViewData["Title"] = "Cadastro de pai de aluno";
 }
 
-<h4>Cadastro de novo aluno</h4>
+<h4>Cadastro de novo pai de aluno</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -15,15 +15,16 @@
                 <input asp-for="Nome" class="form-control" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Matricula" class="control-label"></label>
-                <input asp-for="Matricula" class="form-control" />
-                <span asp-validation-for="Matricula" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Notas" class="control-label"></label>
-                <input asp-for="Notas" class="form-control" />
-                <span asp-validation-for="Notas" class="text-danger"></span>
+             <div class="form-group">
+                <label class="control-label">Aluno</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Selecione...</option>
+                    
+                @foreach (var item in ViewBag.ListaDeAlunos)
+                {
+                     <option value="@item.Id">@item.Nome</option>
+                }
+                </select>
             </div>
             <div class="form-group mt-3">
                 <button type="submit" value="Create" class="btn btn-primary"><i class="bi bi-check-circle"></i> Salvar</button>

@@ -1,10 +1,12 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using web_renderizacao_server_sidee.Helpers;
 using web_renderizacao_server_sidee.Models;
 using web_renderizacao_server_sidee.Servico;
 
 namespace web_renderizacao_server_sidee.Controllers
 {
+    [Logado]
     public class AlunosController : Controller
     {
         // GET: Alunos

@@ -1,14 +1,13 @@
-@model Administrador
+@model Pai
 
 @{
-    ViewData["Title"] = "Remover administrador";
+    ViewData["Title"] = "Remover pai de aluno";
 }
 
-<h4>Remover Administrador</h4>
+<h1>Remover Pai de aluno</h1>
 
-<h2 style="color: crimson;">Tem certeza de que deseja remover o administrador @Model.Nome?</h2>
+<h2 style="color: crimson;">Tem certeza de que deseja remover o pai @Model.Nome?</h2>
 <div>
-    <h4>Administradores</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -18,10 +17,10 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.Aluno)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
+            @Html.DisplayFor(model => model.Aluno.Nome)
         </dd>
     </dl>
     

@@ -1,4 +1,4 @@
-@model web_renderizacao_server_sidee.Models.Pai
+@model Pai
 
 @{
     ViewData["Title"] = "Edição de pais de alunos";
@@ -23,7 +23,7 @@
             </div> *@
             <div class="form-group">
                 <label class="control-label">Aluno</label>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" asp-for="AlunoId">
                     @foreach (var item in ViewBag.ListaDeAlunos)
                     {
                         <option value="@item.Id">@item.Nome</option>

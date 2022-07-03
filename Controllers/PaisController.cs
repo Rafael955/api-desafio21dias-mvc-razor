@@ -72,9 +72,39 @@ namespace web_renderizacao_server_sidee.Controllers
             return RedirectToAction(nameof(Details), new { id = _pai.Id });
         }
 
+        public async Task<IActionResult> Delete(string id)
+        {
+            var pai =  await PaiServico.BuscaPorId(id);
+
+            if (pai == null)
+            {
+                return NotFound();
+            }
+
+            return View(pai);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(string id)
+        {
+            var exists = await PaiExists(id);
+            
+            if(!exists) return NotFound();
+
+            await PaiServico.ExcluirPorId(id);
+            
+            return RedirectToAction(nameof(Index));
+        }
+
         private async Task<IList<Aluno>> ObterListaAlunos()
         {
             return await AlunoServico.ObterTodos();
+        }
+
+         private async Task<bool> PaiExists(string id)
+        {
+            return await PaiServico.BuscaPorId(id) != null ? true : false;
         }
     }
 }

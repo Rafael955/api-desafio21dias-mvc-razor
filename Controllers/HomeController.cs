@@ -5,12 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using web_renderizacao_server_sidee.Helpers;
 using web_renderizacao_server_sidee.Models;
 
 namespace web_renderizacao_server_sidee.Controllers
 {
     public class HomeController : Controller
     {
+        [Logado]
         public IActionResult Index()
         {
             return View();

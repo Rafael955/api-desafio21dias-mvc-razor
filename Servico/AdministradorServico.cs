@@ -105,5 +105,19 @@ namespace web_renderizacao_server_sidee.Servico
             if(!response.IsSuccessStatusCode)
                 throw new Exception("Erro ao excluir administrador!");
         }
+
+        public static async Task<Administrador> Logar(string email, string senha)
+        {
+            using var client = new HttpClient();
+
+            var administrador = new Administrador { Email = email, Senha = senha };
+
+            using var response = await client.PostAsJsonAsync($"{Program.AdministradoresApi}/administradores/api/administrador/login", administrador);
+
+            if(!response.IsSuccessStatusCode) 
+                return null;
+
+            return JsonConvert.DeserializeObject<Administrador>(await response.Content.ReadAsStringAsync());
+        }
     }
 }

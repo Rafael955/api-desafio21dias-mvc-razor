@@ -26,6 +26,7 @@ namespace web_renderizacao_server_sidee
             Program.AdministradoresApi = Configuration.GetConnectionString("AdministradoresApi");
             Program.AlunosProfessoresApi = Configuration.GetConnectionString("AlunosProfessoresApi");
             Program.PaisApi = Configuration.GetConnectionString("PaisApi");
+            Program.MateriaisApi = Configuration.GetConnectionString("MateriaisApi");
             
             services.AddControllersWithViews();
         }

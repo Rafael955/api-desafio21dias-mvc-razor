@@ -14,6 +14,7 @@ namespace web_renderizacao_server_sidee
         public static string AdministradoresApi;
         public static string AlunosProfessoresApi;
         public static string PaisApi;
+        public static string MateriaisApi;
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();

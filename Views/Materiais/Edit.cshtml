@@ -1,0 +1,43 @@
+@model Material
+
+@{
+    ViewData["Title"] = "Edição de materiais de alunos";
+}
+
+<h4>Edição de Material de Aluno</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="Matricula" class="control-label"></label>
+                <input asp-for="Matricula" class="form-control" />
+                <span asp-validation-for="Matricula" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label class="control-label">Aluno</label>
+                <select class="form-select" asp-for="AlunoId">
+                    @foreach (var item in ViewBag.ListaDeAlunos)
+                    {
+                        <option value="@item.Id">@item.Nome</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group mt-3">
+                 <button type="" value="Create" class="btn btn-primary"><i class="bi bi-check-circle"></i> Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mt-2">
+  <a class="btn btn-outline-dark" asp-action="Index"><i class="bi bi-arrow-counterclockwise"></i> Retornar para a Lista</a>
+</div>
+
